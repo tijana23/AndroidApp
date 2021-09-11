@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/home"
+    android:orientation="vertical"
+    tools:context=".HomeActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="500dp"
+        android:fontFamily="@font/permanent_marker_regular"
+        android:gravity="center"
+        android:text="UNLEASH YOUR \n INNER ATHLETE"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/LinearLayout02"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="bottom">
+
+        <Button
+            android:id="@+id/StartButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:backgroundTint="#1DB954"
+            android:fontFamily="@font/roboto_regular"
+            android:onClick="start"
+            android:text="start now"
+            android:textColor="@color/white"
+            tools:ignore="OnClick"/>
+
+        <Button
+            android:id="@+id/LoginButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:layout_weight="1"
+            android:backgroundTint="#191414"
+            android:fontFamily="@font/roboto_regular"
+            android:onClick="login"
+            android:text="log in"
+            android:textColor="@color/white"
+            tools:ignore="OnClick"/>
+    </LinearLayout>
+
+
+</LinearLayout>
