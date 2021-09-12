@@ -2,6 +2,7 @@ package com.example.fitnessapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
     private List<String> Names;
     private List<String> Times;
     private List<String> Levels;
-    private List<String> Instructions;
+    private List<String> Images;
     private List<String> Targets;
     private int detailsLayout;
     private Context mContext;
@@ -31,9 +32,10 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
         public TextView time;
         public TextView level;
         public TextView target;
-        public TextView instructions;
-        public RelativeLayout card;
-//        public ImageView image;
+        public ImageView image;
+        public LinearLayout card;
+
+
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -42,17 +44,16 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
             time = (TextView) itemView.findViewById(R.id.time);
             target = (TextView) itemView.findViewById(R.id.target);
             level = (TextView) itemView.findViewById(R.id.level);
-            instructions = (TextView) itemView.findViewById(R.id.instruction);
-            card = (RelativeLayout) itemView.findViewById(R.id.card1);
-//            image = (ImageView) itemView.findViewById(R.id.picture1);
+            card = (LinearLayout) itemView.findViewById(R.id.card1);
+            image = (ImageView) itemView.findViewById(R.id.picture1);
         }
     }
 
-    public DetailsAdapter(List<String> Names, List<String> Times,List<String> Levels,List<String> Instructions,List<String> Targets, int detailsLayout, Context context) {
+    public DetailsAdapter(List<String> Names, List<String> Times,List<String> Levels,List<String> Images ,List<String> Targets, int detailsLayout, Context context) {
         this.Names = Names;
         this.Times = Times;
         this.Levels=Levels;
-        this.Instructions=Instructions;
+        this.Images=Images;
         this.Targets=Targets;
         this.detailsLayout = detailsLayout;
         this.mContext = context;
@@ -76,8 +77,10 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
         viewHolder.level.setText(Level);
         String Target = Targets.get(i);
         viewHolder.target.setText(Target);
-        String Instruction = Instructions.get(i);
-        viewHolder.instructions.setText(Instruction);
+        Resources resources = viewHolder.name.getContext().getResources();
+        final int resourceId = resources.getIdentifier(Images.get(i), "drawable",
+                viewHolder.name.getContext().getPackageName());
+        viewHolder.image.setImageResource(resourceId);
 
         viewHolder.card.setOnClickListener(new View.OnClickListener() {
             @Override

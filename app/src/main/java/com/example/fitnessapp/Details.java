@@ -35,10 +35,6 @@ public class Details extends AppCompatActivity {
         String names=db.WorkoutName(Group);
         Names=Arrays.asList(names.split(","));
 
-        List<String> Instructions = Arrays.asList();
-        String instructions=db.Instructions(Group);
-        Instructions=Arrays.asList(instructions.split("/"));
-
         List<String> Times = Arrays.asList();
         String times=db.Time(Group);
         Times=Arrays.asList(times.split(","));
@@ -51,13 +47,17 @@ public class Details extends AppCompatActivity {
         String targets=db.Target(Group);
         Targets=Arrays.asList(targets.split(","));
 
+        List<String> Images = Arrays.asList();
+        String images=db.Image(Group);
+        Images=Arrays.asList(images.split(","));
+
 
 
         mRecyclerView = (RecyclerView) findViewById(R.id.list1);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mAdapter = new DetailsAdapter(Names,Times,Levels,Instructions,Targets,R.layout.details_cards,this);
+        mAdapter = new DetailsAdapter(Names,Times,Levels,Targets,Images,R.layout.details_cards,this);
 
         mRecyclerView.setAdapter(mAdapter);
     }
