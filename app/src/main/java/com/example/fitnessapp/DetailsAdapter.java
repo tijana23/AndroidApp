@@ -86,7 +86,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
             @Override
             public void onClick(View v) {
                 Context context = v.getContext();
-                Intent intent = new Intent(context, Details.class);
+                Intent intent = new Intent(context, InstructionsActivity.class);
                 intent.putExtra("name", viewHolder.name.getText().toString());
                 context.startActivity(intent);
             }

@@ -25,6 +25,8 @@ public class Details extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar.setTitle("");
 
         Intent intent = getIntent();
         String Group = intent.getStringExtra("name");

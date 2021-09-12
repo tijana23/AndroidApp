@@ -13,7 +13,7 @@ import java.util.List;
 public class DbHelper extends SQLiteOpenHelper {
     public static final String DBNAME = "Login.db";
     public DbHelper(Context context) {
-        super(context, "Databaza12345678.db", null, 1);
+        super(context, "Databaza1234567810.db", null, 1);
     }
 
     @Override
@@ -125,6 +125,25 @@ public class DbHelper extends SQLiteOpenHelper {
         cursor.close();
         return result;
     }
+    public String getTime(String name) {
+        SQLiteDatabase read = this.getReadableDatabase();
+        Cursor c = read.rawQuery("SELECT time FROM workouts WHERE nameWorkout=?", new String[]{name});
+        c.moveToFirst();
+        return c.getString(0);
+    }
+    public String getInstruction(String name) {
+        SQLiteDatabase read = this.getReadableDatabase();
+        Cursor c = read.rawQuery("SELECT instructions FROM workouts WHERE nameWorkout=?", new String[]{name});
+        c.moveToFirst();
+        return c.getString(0);
+    }
+    public String getImage(String name) {
+        SQLiteDatabase read = this.getReadableDatabase();
+        Cursor c = read.rawQuery("SELECT image FROM workouts WHERE nameWorkout=?", new String[]{name});
+        c.moveToFirst();
+        return c.getString(0);
+    }
+
 
     public void popolni() {
         SQLiteDatabase read = this.getReadableDatabase();
