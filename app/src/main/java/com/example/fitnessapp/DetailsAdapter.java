@@ -8,26 +8,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHolder> {
-    private List<String> Names;
-    private List<String> Times;
-    private List<String> Levels;
-    private List<String> Images;
-    private List<String> Targets;
-    private int detailsLayout;
-    private Context mContext;
-    private DbHelper db;
+    final List<String> Names;
+    final List<String> Times;
+    final List<String> Levels;
+    final List<String> Images;
+    final List<String> Targets;
+    final int detailsLayout;
+    final Context mContext;
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView name;
         public TextView time;
         public TextView level;
@@ -42,23 +40,25 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
 
             name = (TextView) itemView.findViewById(R.id.Name1);
             time = (TextView) itemView.findViewById(R.id.time);
-            target = (TextView) itemView.findViewById(R.id.target);
             level = (TextView) itemView.findViewById(R.id.level);
-            card = (LinearLayout) itemView.findViewById(R.id.card1);
+            target = (TextView) itemView.findViewById(R.id.target);
             image = (ImageView) itemView.findViewById(R.id.picture1);
+            card = (LinearLayout) itemView.findViewById(R.id.card1);
+
         }
     }
 
-    public DetailsAdapter(List<String> Names, List<String> Times,List<String> Levels,List<String> Images ,List<String> Targets, int detailsLayout, Context context) {
+    public DetailsAdapter(List<String> Names, List<String> Times,List<String> Levels,List<String> Images,List<String> Targets, int detailsLayout, Context mContext) {
         this.Names = Names;
         this.Times = Times;
         this.Levels=Levels;
         this.Images=Images;
         this.Targets=Targets;
         this.detailsLayout = detailsLayout;
-        this.mContext = context;
+        this.mContext = mContext;
     }
 
+    @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(detailsLayout, viewGroup, false);
@@ -75,21 +75,18 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
         viewHolder.time.setText(Time);
         String Level = Levels.get(i);
         viewHolder.level.setText(Level);
+        Resources resources = viewHolder.name.getContext().getResources();
+        final int resourceId = resources.getIdentifier(Images.get(i), "drawable", viewHolder.name.getContext().getPackageName());
+        viewHolder.image.setImageResource(resourceId);
         String Target = Targets.get(i);
         viewHolder.target.setText(Target);
-        Resources resources = viewHolder.name.getContext().getResources();
-        final int resourceId = resources.getIdentifier(Images.get(i), "drawable",
-                viewHolder.name.getContext().getPackageName());
-        viewHolder.image.setImageResource(resourceId);
 
-        viewHolder.card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Context context = v.getContext();
-                Intent intent = new Intent(context, InstructionsActivity.class);
-                intent.putExtra("name", viewHolder.name.getText().toString());
-                context.startActivity(intent);
-            }
+
+
+        viewHolder.card.setOnClickListener(v -> {
+            Intent intent = new Intent(mContext, InstructionsActivity.class);
+            intent.putExtra("name", viewHolder.name.getText().toString());
+            mContext.startActivity(intent);
         });
 
 

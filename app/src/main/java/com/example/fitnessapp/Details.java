@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Details extends AppCompatActivity {
@@ -59,7 +59,7 @@ public class Details extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mAdapter = new DetailsAdapter(Names,Times,Levels,Targets,Images,R.layout.details_cards,this);
+        mAdapter = new DetailsAdapter(Names,Times,Levels,Images,Targets,R.layout.details_cards,this);
 
         mRecyclerView.setAdapter(mAdapter);
     }
