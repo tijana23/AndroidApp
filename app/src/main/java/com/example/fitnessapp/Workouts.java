@@ -30,7 +30,7 @@ public class Workouts extends AppCompatActivity {
 
         db = new DbHelper(this);
 
-        List<String> Names = Arrays.asList("Abs workouts","Legs workouts","Arms workouts","Glutes workouts","Chest workouts","Cardio workouts");
+        List<String> Names = Arrays.asList("Abs workouts","Legs workouts","Arms workouts","Glutes workouts","Chest workouts");
 
 
         mRecyclerView = (RecyclerView) findViewById(R.id.list);

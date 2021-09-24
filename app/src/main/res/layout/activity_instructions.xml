@@ -116,6 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/text_view_countdown"
                 android:layout_centerHorizontal="true"
+                android:backgroundTint="#ADD8E6"
                 android:text="start" />
 
             <Button
@@ -126,6 +127,7 @@
                 android:layout_marginStart="11dp"
                 android:layout_toEndOf="@+id/button_start_pause"
                 android:text="reset"
+                android:backgroundTint="#ff4747"
                 android:visibility="invisible"
                 tools:visibility="visible" />
         </RelativeLayout>
